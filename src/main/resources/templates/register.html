@@ -2,32 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>User Registration</title>
 </head>
 <body>
-    <div class="form-container">
-        <div th:if="${param.success}">
-            <div class="success-message">
-                <p>Registration Successful!</p>
-            </div>
-        </div>
-
-        <h2>Registration</h2>
-        <form th:action="@{/register}" method="post" role="form" th:object="${userDto}">
-            <label for="email">Email:</label>
-            <input th:field="*{email}" type="text" id="email" name="email" placeholder="Enter your Email" required>
-
-            <label for="username">Username:</label>
-            <input th:field="*{username}" type="text" id="username" name="username" placeholder="Enter your Username" required>
-
-            <label for="password">Password:</label>
-            <input th:field="*{password}" type="password" id="password" name="password" placeholder="Enter your Password" required>
-
-            <button type="submit">Register</button>
-        </form>
+    <h2>User Registration</h2>
+    <form action="#" th:action="@{/register}" th:object="${userDto}" method="post">
         <div>
-            <span class="form-footer">Already have an account? <a th:href="@{/login}">Login</a> here.</span>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" th:field="*{username}" required autofocus>
         </div>
-    </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:field="*{email}" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" th:field="*{password}" required>
+        </div>
+        <div>
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" th:field="*{fullname}" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
 </body>
 </html>
+

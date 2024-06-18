@@ -20,10 +20,18 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    public User(String username, String email, String password){
+    @Column(nullable = false)
+    private String fullname;
+
+    public User(){
+
+    }
+    
+    public User(String username, String email, String password, String fullname){
         this.username = username;
         this.email = email;
         this.password = password;
+        this.fullname = fullname;
     }
 
     public Long getId(){
@@ -54,8 +62,17 @@ public class User {
         this.password = password;
     }
 
+    public String getFullname(){
+        return this.fullname;
+    }
+
+    public void setFullname(String fullname){
+        this.fullname = fullname;
+    }
+
     @Override
     public String toString(){
         return "User [id= " + id + " ,username= " + username + ", password=" + password;
     }
+
 }

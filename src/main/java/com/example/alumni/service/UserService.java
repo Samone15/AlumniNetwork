@@ -1,9 +1,11 @@
 package com.example.alumni.service;
 
+import java.util.Optional;
+
 import com.example.alumni.dto.UserDto;
 import com.example.alumni.entity.User;
 
 public interface UserService {
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
     User save(UserDto userDto);
 }
