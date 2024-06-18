@@ -1,4 +1,4 @@
-package com.example.alumni.controller;
+package com.example.alumni.controller.loginCont;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.alumni.controller.Valid;
 import com.example.alumni.dto.UserDto;
-import com.example.alumni.service.UserService;
+import com.example.alumni.service.users.UserService;
 
 @Controller
 public class RegisterController {

@@ -1,4 +1,4 @@
-package com.example.alumni.controller;
+package com.example.alumni.controller.loginCont;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.alumni.service.UserService;
+import com.example.alumni.service.users.UserService;
 
 
 @Controller
@@ -25,11 +25,5 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @GetMapping("/home")
-    public String homeForm(Model model) {
-        model.addAttribute("message", "Welcome to the Home Page!");
-        return "home";
     }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Top Articles</h1>
+    <ul>
+        <li th:each="article : ${articles}">
+            <h2 th:text="${article.title}">Article Title</h2>
+            <!-- <p th:text="${article.description}">Article Content</p>
+            <p th:text="${#dates.format(article.timeStamp, 'yyyy-MM-dd HH:mm')}">Timestamp</p> -->
+        </li>
+    </ul>
+    <div>
+        <a th:href="@{/articles/write}" class="btn btn-primary">Save Article</a>
+    </div>
+</body>
+</html>
+

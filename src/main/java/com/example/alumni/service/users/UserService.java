@@ -1,4 +1,4 @@
-package com.example.alumni.service;
+package com.example.alumni.service.users;
 
 import java.util.Optional;
 
