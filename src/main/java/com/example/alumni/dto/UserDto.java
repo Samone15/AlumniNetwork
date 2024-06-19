@@ -6,7 +6,7 @@ public class UserDto {
     String password;
     String fullname;
 
-    public UserDto(){
+    public UserDto(Long long1, String string){
 
     }
     
@@ -15,6 +15,10 @@ public class UserDto {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
+    }
+
+    public UserDto() {
+        
     }
 
     public String getUsername() {
