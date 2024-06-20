@@ -47,7 +47,7 @@ public class JobController {
         return "jobPage";
     }
 
-    @GetMapping("/jobs/top")
+    @GetMapping("/top")
     public String getTopNJobsByLastDate(
             @RequestParam("n") int n,
             @RequestParam("lastDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate lastDate,

@@ -18,6 +18,6 @@ public interface JobRepository extends JpaRepository<Job, Long>{
     @Query(value = "SELECT * FROM jobs ORDER BY time_stamp DESC LIMIT :n", nativeQuery = true)
     List<Job> topNJobAlerts(@Param("n") int n);
 
-    @Query("SELECT j FROM Job j WHERE j.lastDate <= :lastDate ORDER BY j.lastDate DESC")
+    @Query("SELECT j FROM Job j WHERE j.lastDate >= :lastDate ORDER BY j.lastDate ASC")
     List<Job> findTopNJobsByLastDate(@Param("lastDate") LocalDate lastDate, Pageable pageable);
 }

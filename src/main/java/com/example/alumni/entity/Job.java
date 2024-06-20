@@ -79,7 +79,7 @@ public class Job {
         return this.applyLink;
     }
 
-    public LocalDate getLasDate(){
+    public LocalDate getLastDate(){
         return this.lastDate;
     }
 
@@ -103,8 +103,8 @@ public class Job {
         this.timeStamp = timeStamp;
     }
 
-    public void setLastdate(LocalDate lasDate){
-        this.lastDate = lasDate;
+    public void setLastdate(LocalDate lastDate){
+        this.lastDate = lastDate;
     }
 
     public void setApplyLink(String applyLink){
