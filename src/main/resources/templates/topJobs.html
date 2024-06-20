@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Jobs</title>
+</head>
+<body>
+    <div>
+        <div th:if="${jobs.isEmpty()}">
+            <p>No jobs available.</p>
+        </div>
+        <div th:if="${!jobs.isEmpty()}">
+            <ul>
+                <li th:each="job : ${jobs}">
+                    <h3 th:text="${job.title}"></h3>
+                    <p>Company: <span th:text="${job.company}"></span></p>
+                    <p>Details: <span th:text="${job.details}"></span></p>
+                    <p>Location: <span th:text="${job.location}"></span></p>
+                    <p>Last Date to Apply: <span th:text="${job.lastDate}"></span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
