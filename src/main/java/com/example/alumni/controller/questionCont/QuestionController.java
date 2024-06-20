@@ -35,7 +35,7 @@ public class QuestionController {
         return "questionsPage";
     }
 
-    @PostMapping
+    @PostMapping("/ask")
     public String addQuestion(@ModelAttribute QuestionDto questionDto) {
         questionService.saveQuestion(questionDto);
         return "redirect:/questions/top";
@@ -45,5 +45,11 @@ public class QuestionController {
     public String addAnswer(@PathVariable Long questionId, @ModelAttribute AnswerDto answerDto) {
         questionService.addAnswerToQuestion(questionId, answerDto);
         return "redirect:/questions/top";
+    }
+
+    @GetMapping("/ask")
+    public String showNewQuestionForm(Model model) {
+        model.addAttribute("question", new QuestionDto()); 
+        return "writeQuestion"; 
     }
 }

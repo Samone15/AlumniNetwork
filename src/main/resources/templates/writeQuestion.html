@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask a New Question</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Jost', sans-serif;
+            /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); */
+            background: #fff;
+        }
+        .main{
+            width: 750px;
+            height: auto;
+            background: white;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #dcdbdb;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .question label {
+            color: #573b8a;
+            font-size: 2.3em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .question input {
+            width: 100%;
+            height: 40px;
+            background: #e0dede;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .question textarea{
+            border-radius: 5px;
+            background: #e0dede;
+            padding: 12px;
+            width: 100%;
+        }
+        .question button {
+            width: 100%;
+            height: 40px;
+            margin: 20px 0;
+            color: #fff;
+            background: #573b8a;
+            font-size: 1em;
+            font-weight: bold;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            transition: .2s ease-in;
+            cursor: pointer;
+        }
+        .question button:hover {
+            background: #6d44b8;
+        }
+        .form-footer {
+            color: #573b8a;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+        .form-footer a {
+            color: #f39c12;
+            text-decoration: none;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="question">
+            <label aria-hidden="true">Ask a question</label>
+            <form th:action="@{/questions/ask}" method="post" th:object="${question}">
+                <div>
+                    <input type="text" id="title" name="title" th:field="*{title}" placeholder="add title" required>
+                </div>
+                <div>
+                    <textarea id="description" name="description" th:field="*{description}"  placeholder = "add question" required></textarea>
+                </div>
+                <button type="submit">Submit Question</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

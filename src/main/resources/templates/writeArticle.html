@@ -130,10 +130,18 @@
                 }
             </script>
             <!-- Display success message if redirected with success parameter -->
-            <div th:if="${param.success}">
+            <!-- <div th:if="${param.success}">
                 <p>Article saved successfully!</p>
             </div>
-            <a th:href="@{/home}">Back to Home</a>
+            <a th:href="@{/home}">Back to Home</a> -->
+            <div th:if="${param.success}">
+                <p>Article saved successfully!</p>
+                <script>
+                    setTimeout(function() {
+                        window.location.href = '/home';
+                    }, 1000);
+                </script>
+            </div>
         </div>
     </div>
 </body>

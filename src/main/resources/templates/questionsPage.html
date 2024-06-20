@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Questions</title>
@@ -7,7 +7,6 @@
 <body>
     <h1>Questions</h1>
 
-    <!-- Display Top N Questions with Top 5 Answers -->
     <div th:each="question : ${questions}">
         <h2 th:text="${question.title}"></h2>
         <p th:text="${question.description}"></p>
@@ -19,14 +18,12 @@
             <p>Answered by: <span th:text="${answer.user.username}"></span></p>
         </div>
 
-        <!-- Form to Add New Answer -->
         <form th:action="@{'/questions/' + ${question.questionId} + '/answers'}" method="post">
             <textarea name="reply" placeholder="Your answer..." required></textarea>
             <button type="submit">Submit Answer</button>
         </form>
     </div>
 
-    <!-- Form to Add New Question -->
     <h2>Ask a New Question</h2>
     <form th:action="@{/questions}" method="post">
         <div>
@@ -41,5 +38,152 @@
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/thymeleaf/3.0.11.RELEASE/thymeleaf.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .question {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #333333;
+        }
+
+        .question p {
+            margin: 8px 0;
+            color: #666666;
+        }
+
+        .answers {
+            margin-top: 10px;
+        }
+
+        .answers h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333333;
+        }
+
+        .answers .answer {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .answers .no-answer {
+            color: #999999;
+            font-style: italic;
+        }
+
+        .answer p {
+            margin: 5px 0;
+        }
+
+        .answer .user {
+            font-weight: bold;
+        }
+
+        .answer form {
+            margin-top: 10px;
+        }
+
+        .answer form textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 5px;
+            resize: vertical;
+        }
+
+        .answer form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answer form button:hover {
+            background-color: #0056b3;
+        }
+
+        .new-question-button {
+            margin-bottom: 20px;
+        }
+
+        .new-question-button button {
+            background-color: #573b8a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .new-question-button button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Questions</h1>
+
+    <!-- Button to Ask a New Question -->
+    <div class="new-question-button">
+        <button onclick="location.href='/questions/ask'">Ask a New Question</button>
+    </div>
+
+    <!-- Display Questions -->
+    <div th:each="question : ${questions}" class="question">
+        <h2 th:text="${question.title}"></h2>
+        <p th:text="${question.description}"></p>
+        <p>Posted by: <span th:text="${question.user.username}"></span></p>
+
+        <!-- See Answers Button -->
+        <button type="button" onclick="toggleAnswers(this)">See Answers</button>
+        <div class="answers" style="display: none;">
+            <h3>Top 5 Answers</h3>
+            <div th:each="answer : ${question.answers}" class="answer">
+                <p th:text="${answer.reply}"></p>
+                <p>Answered by: <span class="user" th:text="${answer.user.username}"></span></p>
+            </div>
+            <p th:if="${question.answers.isEmpty()}" class="no-answer">No answers yet.</p>
+        </div>
+
+        <!-- Form to Give Answer -->
+        <form th:action="@{'/questions/' + ${question.questionId} + '/answers'}" method="post" style="display: none;">
+            <textarea name="reply" placeholder="Your answer..." required></textarea><br>
+            <button type="submit">Submit Answer</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleAnswers(button) {
+            var answersSection = button.nextElementSibling;
+            answersSection.style.display = (answersSection.style.display === 'none') ? 'block' : 'none';
+            button.textContent = (answersSection.style.display === 'none') ? 'See Answers' : 'Hide Answers';
+        }
+    </script>
 </body>
 </html>

@@ -3,6 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Top Jobs</title>
+    <style>
+    .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+   }
+
+    .card h3 {
+    font-weight: bold;
+    margin-bottom: 5px;
+    }
+
+    .card p {
+    margin-bottom: 5px;
+    }
+
+    .card span {
+    font-size: 0.9em;
+    }
+
+    .job-list {
+    list-style-type: none; /* Removes default bullets */
+    padding: 0;
+    }
+
+    </style>
 </head>
 <body>
     <div>
@@ -10,14 +38,22 @@
             <p>No jobs available.</p>
         </div>
         <div th:if="${!jobs.isEmpty()}">
-            <ul>
-                <li th:each="job : ${jobs}">
-                    <h3 th:text="${job.title}"></h3>
-                    <p>Company: <span th:text="${job.company}"></span></p>
-                    <p>Location: <span th:text="${job.location}"></span></p>
-                    <p>Last Date to Apply: <span th:text="${job.lastDate}"></span></p>
+            <ul class="job-list">
+                <li th:each="job : ${jobs}" class="card">
+                    <div>
+                        <h3 th:text="${job.title}"></h3>
+                        <p>Company: <span th:text="${job.company}"></span></p>
+                        <p>
+                            <span>&nbsp;&#x1F5FA;&nbsp;</span> <!-- Map locator emoji -->
+                            <span th:text="${job.location}"></span>
+                        </p>
+                        <p>
+                            <span>Last Date to Apply: </span>
+                            <span th:text="${job.lastDate}"></span>
+                        </p>
+                    </div>
                 </li>
-            </ul>
+            </ul>            
         </div>
     </div>
 </body>
