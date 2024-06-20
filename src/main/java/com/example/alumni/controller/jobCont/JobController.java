@@ -1,8 +1,10 @@
 package com.example.alumni.controller.jobCont;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,5 +45,15 @@ public class JobController {
         List<Job> jobs = jobService.getTopNJobs(limit);
         model.addAttribute("jobs", jobs);
         return "jobPage";
+    }
+
+    @GetMapping("/jobs/top")
+    public String getTopNJobsByLastDate(
+            @RequestParam("n") int n,
+            @RequestParam("lastDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate lastDate,
+            Model model) {
+        List<Job> jobs = jobService.getJobsByLastDate(n, lastDate);
+        model.addAttribute("jobs", jobs);
+        return "topJobs"; 
     }
 }

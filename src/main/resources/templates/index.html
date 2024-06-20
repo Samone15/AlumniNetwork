@@ -2,28 +2,113 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Alumni Network</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-areas: 
+                "header header header"
+                "sidebar-main main sidebar-right"
+                "footer footer footer";
+            height: 100%;
+        }
+        header {
+            grid-area: header;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .sidebar-main {
+            grid-area: sidebar-main;
+            background: #f4f4f4;
+            padding: 1rem;
+        }
+        main {
+            grid-area: main;
+            padding: 1rem;
+        }
+        .sidebar-right {
+            grid-area: sidebar-right;
+            background: #f4f4f4;
+            padding: 1rem;
+        }
+        footer {
+            grid-area: footer;
+            background: #302b63;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .frame {
+            width: 100%;
+            border: none;
+        }
+        .scrollable-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #fff;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .card h2 {
+            margin: 0 0 10px 0;
+        }
+        .card p {
+            margin: 0 0 10px 0;
+        }
+        .card a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const today = new Date().toISOString().split('T')[0];
+            const n = 10; // Number of jobs to fetch
+
+            const iframe = document.querySelector('iframe[name="jobs"]');
+            iframe.src = `/jobs/top?n=${n}&lastDate=${today}`;
+        });
+    </script>
 </head>
 <body>
-    <h1>Top Articles</h1>
-    <ul>
-        <li th:each="article : ${articles}">
-            <h2 th:text="${article.title}">Article Title</h2>
-            <!-- Ensure proper Thymeleaf syntax for commented-out sections -->
-            <!-- <p th:text="${article.description}">Article Content</p> -->
-            <!-- <p th:text="${#dates.format(article.timeStamp, 'yyyy-MM-dd HH:mm')}">Timestamp</p> -->
-        </li>
-    </ul>
-    <div>
-        <a th:href="@{/articles/write}" class="btn btn-primary">Save Article</a>
-    </div>
-    <div>
-        <a th:href="@{/jobs/job-alerts}" class="btn btn-primary">See Job Alerts</a>
-    </div>
-    <div>
-        <a th:href="@{/questions/top}" class="btn btn-primary">See Questions</a>
+    <div class="container">
+        <header>
+            <h1>Alumni Network Management</h1>
+        </header>
+        <aside class="sidebar-main">
+            <ul>
+                <li><a th:href="@{/articles/write}" class="btn btn-primary">Save Article</a></li>
+                <li><a th:href="@{/jobs/job-alerts}" class="btn btn-primary">See Job Alerts</a></li>
+                <li><a th:href="@{/questions/top}" class="btn btn-primary">See Questions</a></li>
+            </ul>
+        </aside>
+        <main>
+            <iframe class="frame" name="articles" src="/topArticles" height="400px"></iframe>
+        </main>
+        <aside class="sidebar-right">
+            <iframe class="frame" name="jobs" height="400px"></iframe>
+        </aside>
+        <footer>
+            <p>&copy; 2024 My Application</p>
+        </footer>
     </div>
 </body>
 </html>
+
 
 

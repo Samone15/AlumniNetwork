@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        .scrollable-list {
+            max-height: 500px;
+            overflow-y: scroll;
+            /* border: 1px solid #ccc; */
+            padding: 10px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #dcdbdb;
+            padding: 15px;
+            margin: 10px 0;
+            background: #fff;
+        }
+        .card h2 {
+            margin: 0 0 10px 0;
+            color: #573b8a;
+        }
+        .card p {
+            margin: 0 0 10px 0;
+        }
+        .card a {
+            text-decoration: none;
+            color: blue;
+        }
+        h1{
+            color: #573b8a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Top Articles</h1>
+    <div class="scrollable-list">
+        <div th:each="article : ${articles}" class="card">
+            <h2 th:text="${article.title}">Article Title</h2>
+            <p th:text="${#strings.substring(article.description, 0, 250) + '...'}"></p>
+            <a th:href="@{/article/{id}(id=${article.articleId})}">See more</a>
+        </div>
+    </div>
+</body>
+</html>

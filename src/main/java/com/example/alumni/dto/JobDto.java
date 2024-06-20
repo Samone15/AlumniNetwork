@@ -11,17 +11,19 @@ public class JobDto {
     private LocalDateTime timeStamp;
     private String applyLink;
     private LocalDate lastDate;
+    private String location;
 
     public JobDto() {
     }
 
-    public JobDto(String title, String company, String details, String applyLink, LocalDate lastDate, LocalDateTime timeStamp) {
+    public JobDto(String title, String company, String details, String applyLink, LocalDate lastDate, LocalDateTime timeStamp, String location) {
         this.title = title;
         this.company = company;
         this.details = details;
         this.applyLink = applyLink;
         this.lastDate = lastDate;
         this.timeStamp = timeStamp;
+        this.location = location;
     }
 
     public String getTitle() {
@@ -70,5 +72,12 @@ public class JobDto {
 
     public void setLastDate(LocalDate lastDate) {
         this.lastDate = lastDate;
+    }
+    public String getLocation(){
+        return this.location;
+    }
+
+    public void setLocation(String location){
+        this.location = location;
     }
 }

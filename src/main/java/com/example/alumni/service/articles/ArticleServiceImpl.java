@@ -33,4 +33,9 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article(articleDto.getTitle(), articleDto.getDescription(), articleDto.getTimeStamp());
         return articleRepository.save(article);
     }
+
+    @Override
+    public Article findById(Long id) {
+        return articleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Article not found"));
+    }
 }

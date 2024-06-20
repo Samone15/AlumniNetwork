@@ -36,17 +36,22 @@ public class Job {
     @Column(nullable = false)
     private LocalDate lastDate;
 
+    
+    @Column(nullable = false)
+    private String location;
+
     public Job(){
 
     }
 
-    public Job(String title, String company, String details, String applyLink, LocalDate lastdate, LocalDateTime timeStamp){
+    public Job(String title, String company, String details, String applyLink, LocalDate lastdate, LocalDateTime timeStamp, String location){
         this.title = title;
         this.company = company;
         this.details = details;
         this.applyLink = applyLink;
         this.lastDate = lastdate;
         this.timeStamp = timeStamp;
+        this.location = location;
     }
 
     public Long getJobId(){
@@ -61,6 +66,7 @@ public class Job {
         return this.company;
     }
 
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     public String getDetails(){
         return this.details;
     }
@@ -103,5 +109,13 @@ public class Job {
 
     public void setApplyLink(String applyLink){
         this.applyLink = applyLink;
+    }
+
+    public String getLocation(){
+        return this.location;
+    }
+
+    public void setLocation(String location){
+        this.location = location;
     }
 }

@@ -8,4 +8,5 @@ import com.example.alumni.entity.Article;
 public interface ArticleService {
     List<Article> getTopNArticles(int limit);
     Article saveArticle(ArticleDto articleDto);
+    Article findById(Long id);
 }
