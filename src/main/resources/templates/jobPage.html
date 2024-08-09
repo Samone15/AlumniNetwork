@@ -81,7 +81,6 @@
     <div class="container">
         <h1>Job Listings</h1>
         <ul class="scrollable-list">
-            <!-- Job cards will be dynamically inserted here -->
             <li th:each="job : ${jobs}" class="job-card">
                 <div>
                     <h3 th:text="${job.title}"></h3>
