@@ -69,12 +69,18 @@
         .job-card .apply-link a:hover {
             text-decoration: underline;
         }
+        .scrollable-list {
+            max-height: 500px;
+            overflow-y: scroll;
+            /* border: 1px solid #ccc; */
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Job Listings</h1>
-        <ul class="job-list">
+        <ul class="scrollable-list">
             <!-- Job cards will be dynamically inserted here -->
             <li th:each="job : ${jobs}" class="job-card">
                 <div>
